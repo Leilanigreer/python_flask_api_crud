@@ -23,9 +23,13 @@ def create():
 def show(id):
     return db.photos_find_by_id(id)
 
-@app.route('/photos<id>.json', methods=["PATCH"])
+@app.route('/photos/<id>.json', methods=["PATCH"])
 def update(id):
     name = request.form.get("name")
     width = request.form.get("width")
     height = request.form.get("height")
     return db.photos_update_by_id(id, name, width, height)
+
+@app.route('/photos/<id>.json', methods=["DESTROY"])
+def photos_destroy_by_id(id):
+    return db.photos_destroy_by_id(id)
